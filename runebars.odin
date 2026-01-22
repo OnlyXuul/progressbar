@@ -69,7 +69,7 @@ Basic_Bar_Proc :: #type proc(title: string, width := uint(25)) -> (pb: Progress_
 Multi_Bar_Proc :: #type proc(title: string, width := uint(25), allocator := context.allocator) -> (pb: Progress_Bar)
 
 //	Procedure helper for creating a Progress Bar using an Bar id
-create_rune_bar :: proc(bar_id: Bar, title: string, width := uint(25), allocator := context.allocator)  -> (pb: Progress_Bar) {
+create_bar :: proc(bar_id: Bar, title: string, width := uint(25), allocator := context.allocator)  -> (pb: Progress_Bar) {
 	switch id in bar_id {
 	case Basic_Bar:
 		pb = Basic_Bar_Create[id](title, width)
@@ -88,9 +88,9 @@ create_random_bar :: proc(title: string, width := uint(25), allocator := context
 	bar := rand.int_range(0, total_bar_count)
 	switch bar {
 	case 0..<basic_bar_count:
-		pb = create_rune_bar(rand.choice_enum(Basic_Bar), title, width)
+		pb = create_bar(rand.choice_enum(Basic_Bar), title, width)
 	case basic_bar_count..<total_bar_count:
-		pb = create_rune_bar(rand.choice_enum(Multi_Bar), title, width, allocator)
+		pb = create_bar(rand.choice_enum(Multi_Bar), title, width, allocator)
 	}
 	return
 }
