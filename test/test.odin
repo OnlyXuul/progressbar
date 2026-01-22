@@ -39,7 +39,7 @@ main :: proc() {
 
 //	Normal usage example
 {
-	bar := pb.create_rune_bar(.pacman_ghosts, "Bar Test:", 50)
+	bar := pb.create_bar(.pacman_ghosts, "Bar Test:", 50)
 	defer pb.delete_progress_bar(&bar)
 
 	//	Simulate some process that loops and takes time and provides updates
@@ -67,7 +67,7 @@ main :: proc() {
 
 //	Test specified bar
 {
-	//bar := pb.create_rune_bar(.pacman_ghosts, "Bar Test:", 50)
+	//bar := pb.create_bar(.pacman_ghosts, "Bar Test:", 50)
 	//defer pb.delete_progress_bar(&bar)
 
 	//	Test int counter with created bar from above
