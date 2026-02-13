@@ -35,8 +35,6 @@ test_bar :: proc($T: typeid, bar: ^pb.Progress_Bar, delay: time.Duration, break_
 
 main :: proc() {
 
-	pb.set_utf8_terminal()
-
 //	Normal usage example
 {
 	bar := pb.create_bar(.pacman_ghosts, "Bar Test:", 50)
