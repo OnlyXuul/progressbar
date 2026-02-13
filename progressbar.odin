@@ -3,19 +3,8 @@ package progressbar
 import "core:fmt"
 import "core:time"
 import "base:intrinsics"
-import win32 "core:sys/windows"
 
 import "shared:afmt"
-
-//	set_utf8_terminal based on OS
-when ODIN_OS == .Windows {
-	_set_utf8_terminal :: proc() {
-		win32.SetConsoleOutputCP(.UTF8)
-		win32.SetConsoleCP(.UTF8)
-	}
-} else {
-	_set_utf8_terminal :: proc() {}
-}
 
 //	Specific Progress Bar types
 String :: struct { data: string, format: afmt.ANSI }
@@ -58,7 +47,6 @@ delete_progress_bar :: proc(bar_format: ^Progress_Bar) {
 cursor_hide    :: proc(flush := true) { fmt.print("\e[?25l", flush=flush) }
 cursor_show    :: proc(flush := true) { fmt.print("\e[?25h", flush=flush) }
 cursor_return  :: proc(flush := true) { fmt.print("\r",      flush=flush) }
-set_utf8_terminal :: proc() { _set_utf8_terminal() }
 
 //	Use after a loop ends in case progress did not finish
 progress_bar_exit :: proc() { fmt.println(flush = true); cursor_show(flush = true) }
